@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<head th:replace="~{component ::headerFragment}" >
+
+</head>
+
+<head>
+
+    <!-- link User css file -->
+    <link rel="stylesheet" href="resources/style/user.css">
+
+
+    <!-- Link User js File -->
+
+    <script src="controllerjs\user.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Topnav Bar -->
+  <nav th:replace="~{component ::topnavFragment}">
+</nav>
+    
+
+    <div class="container-fluid mt-2">
+
+        <!-- Start Title area -->
+
+        <div class="row mt-5">
+
+            <div class="col-12 text-center d-flex justify-content-center p-2 title-header-div">
+
+                <i class="fa-solid fa-user fa-2x me-3"></i>
+                <h2>User Management</h2>
+
+            </div>
+
+        </div>
+
+        <!-- End Title area -->
+
+        <!-- Start of Form and Table -->
+
+        <div class="row mt-5 m-2 user-card">
+
+            <!-- Form Starts -->
+
+            <div class="col-5">
+
+                <form action="" id="userForm" onsubmit="return false">
+
+                    <!-- Employee -->
+
+                    <div class="row mt-2">
+                        <label for="" class="form-label fw-bold col-3">Employee :</label>
+                        <div class="col-9">
+                            <select id="selectEmployee" class="form-select text-center" required
+                                onchange="selectDynamicValidator(selectEmployee,'', 'user','employee_id')">
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Employee -->
+
+                    <!-- Username -->
+
+                    <div class="row mt-4">
+                        <label for="" class="form-label fw-bold col-3">Username :</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" id="textUserName" required
+                                placeholder="Enter Username"
+                                onkeyup="textValidator(textUserName,'^[A-Za-z0-9]{5,15}$' , 'user','username')">
+                        </div>
+                    </div>
+
+                    <!-- Username -->
+
+                    <!-- Password -->
+
+                    <div class="row mt-4">
+                        <label for="" class="form-label fw-bold col-3">password :</label>
+                        <div class="col-9">
+                            <input type="password" class="form-control" id="textPassword" required
+                                placeholder="Enter Password"
+                                onkeyup="textValidator(textPassword,'^[A-Za-z0-9]{5,15}$' , 'user','password')">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+
+                    <!-- Re-Password -->
+
+                    <div class="row mt-4">
+                        <label for="" class="form-label fw-bold col-3">Re-Password :</label>
+                        <div class="col-9">
+                            <input type="password" class="form-control" id="rePassword" required
+                                placeholder="Re Enter Password" onkeyup="passwordRetypeValidator()">
+                        </div>
+                    </div>
+
+                    <!-- Re-Password -->
+
+                    <!-- Email -->
+
+                    <div class="row mt-4">
+                        <label for="" class="form-label fw-bold col-3">Email :</label>
+                        <div class="col-9">
+                            <input type="email" class="form-control" id="textEmail" required placeholder="Enter Email"
+                                onkeyup="textValidator(textEmail,'^[A-Za-z0-9\\_\\-\\.]{5,20}[@][a-z]{3,10}[.][a-z]{2,3}$' , 'user','email')">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+
+                    <!-- Role -->
+
+                    <div class="row mt-4">
+                        <label for="" class="col-3 col-form-label fw-bold">Role :</label>
+                        <div class="mb-3  col-9" id="divRoles">
+
+                        </div>
+                    </div>
+
+                    <!-- Role -->
+
+                    <!-- Status -->
+                    <div class="row mt-4">
+                        <label for="" class="col-4 col-form-label fw-bold">Status :</label>
+                        <div class="mb-3 form-check col-8">
+                            <input type="checkbox" class="form-check-input" id="checkStatus" required onchange="if (this.checked) {
+                             user.status = true; 
+                             labelUserStatus.innerText = 'User Account is Active';
+                            
+                        } else {
+                            user.status = false;
+                            labelUserStatus.innerText = 'User Account is Not-Active';
+                            
+                        }">
+                            <label class="form-check-label" for="exampleCheck1" id="labelUserStatus">User Account is Not
+                                Active</label>
+                        </div>
+                    </div>
+                    <!-- Status -->
+
+                    <!-- Buttons -->
+                    <div class="row mt-4">
+                        <div class="col-7">
+                            <button type="reset" class="btn btn-primary ">Clear</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" onclick="buttonUpdateUser()" class="btn btn-primary ">Update</button>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" onclick="buttonUserFormSubmit()"
+                                class="btn btn-primary ">Submit</button>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                </form>
+            </div>
+
+
+
+            <!-- Form Ends -->
+
+            <!-- Table Starts -->
+
+
+            <div class="col-7 ">
+
+                <div class="row m-2">
+
+                    <div class="col-12 ">
+
+                        <div class="card-body User-cardbody mt-3">
+
+                            <table class="table table-hover" id="tableUser">
+
+                                <thead class="table-header text-center">
+
+                                    <tr class=" text-center">
+
+                                        <th> # </th>
+                                        <th> Full Name </th>
+                                        <th> User Name </th>
+                                        <th> Email </th>
+                                        <th> Role </th>
+                                        <th> Status </th>
+                                        <th> Modify </th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody class="table-body ">
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Table Ends -->
+
+        </div>
+
+        <!-- Start of Form and Table -->
+
+    </div>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+
+
+<head th:fragment="headerFragment">
+
+    <title th:text="${title}"> </title>
+
+    <link rel="icon" href="resources/image/user.png">
+
+
+    <!-- link bs5 css file -->
+    <link rel="stylesheet" href="resources/bootstrap-5.2.3/css/bootstrap.min.css">
+
+    <!-- link bs5 js file -->
+    <script src="resources/bootstrap-5.2.3/js/bootstrap.bundle.min.js"> </script>
+
+    <!-- lik fontawesome css file -->
+    <link rel="stylesheet" href="resources/fontawesome-free-6.4.2/css/all.css">
+
+    <!-- link jquery js file -->
+    <script src="resources/script/jquery-3.7.1.js"></script>
+
+    <!-- datatable css file -->
+    <link rel="stylesheet" href="resources/datatables-1.13.6/css/jquery.dataTables.min.css">
+
+    <!-- datatable js file -->
+    <script src="resources/datatables-1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- Common Function JS -->
+
+    <script src="resources\script\commonFunction.js"></script>
+
+    <!-- Validation Function JS -->
+
+    <script src="resources\script\validationFunction.js"></script>
+
+    <!-- Link table function js file -->
+
+    <script src="resources/script/tableCommonFunction.js"></script>
+
+</head>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary mt-2" th:fragment="topnavFragment">
+    <div class="container-fluid">
+      <label class="form-label fw-bold navbar-brand"> Hi </label> 
+      <label class="form-label fw-bold navbar-brand" th:text="${loggedUser}"></label>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" href="http://localhost:8080/employee">Employee</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="http://localhost:8080/user">user</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/privilege">privilege</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:8080/supplier">Supplier</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="http://localhost:8080/employee">Employee</a></li>
+              <li><a class="dropdown-item" href="http://localhost:8080/user">User</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="http://localhost:8080/privilege">privilege</a></li>
+              <li><a class="dropdown-item" href="http://localhost:8080/supplier">Supplier</a></li>
+            </ul>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+
+          <button class=" btn" type="button" onclick="let userConfirm = confirm('Are You Sure to Sign out?');
+          if(userConfirm)
+          {window.location.replace('/logout');}"> SignOut <i class="fa fa-sign-out fa-xl" aria-hidden="true"></i></button>
+
+        </form>
+      </div>
+    </div>
+  </nav>

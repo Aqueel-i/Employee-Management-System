@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<head th:replace="~{component ::headerFragment}" >
+
+</head>
+
+<head>
+
+    <!-- link User css file -->
+    <link rel="stylesheet" href="resources/style/supplier.css">
+
+
+    <!-- Link User js File -->
+
+    <script src="controllerjs\supplier.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Topnav Bar -->
+  <nav th:replace="~{component ::topnavFragment}">
+</nav>
+    
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-2"></div>
+      <div class="col-3"><label for="supplier">Supplier Name:</label></div>
+      <div class="col-5"><input type="text" id="supplier" class="form-control" /></div>
+      <div class="col-2"></div>
+  </div>
+
+  <div class="row mt-5">
+      <div class="col-2"></div>
+      <div class="col-3">
+          <select class="form-select" multiple>
+              <option value="">item1</option>
+              <option value="">item1</option>
+              <option value="">item1</option>
+              <option value="">item1</option>
+          </select>
+      </div>
+      <div class="col-2">
+          <div class="item">
+              <button class="move-btn"> > </button>
+              <button class="move-btn"> >> </button>
+              <button class="move-btn"> < </button>
+              <button class="move-btn"> << </button>
+          </div>
+      </div>
+      <div class="col-3">
+          <select class="form-select" multiple>
+              <option value="">item1</option>
+              <option value="">item1</option>
+              <option value="">item1</option>
+              <option value="">item1</option>
+          </select>
+      </div>
+      <div class="col-2"></div>
+  </div>
+
+  <div class="row mt-5">
+      <div class="col-3"></div>
+      <div class="col-2"><label for="">Supplier Status:</label></div>
+      <div class="col-5"><select class="form-select" id="selectSupplierStatus"></select></div>
+      <div class="col-3"></div>
+
+  </div>
+</div>
+</body>
+
+</html>

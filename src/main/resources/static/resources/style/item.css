@@ -1,0 +1,18 @@
+body{
+    background-image: url(../image/f4f5f0.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-header-div{
+    background-color: rgb(165, 42, 42);
+}
+
+.item-card{
+   /* background-color: antiquewhite; */
+    border: 2px rgb(244, 160, 96);
+}
+
+.item-cardbody{
+    background-color: rgba(158, 2, 2, 0.838);
+}

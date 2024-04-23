@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<head th:replace="~{component ::headerFragment}" >
+
+</head>
+
+<head>
+
+    <!-- link  css file -->
+    <link rel="stylesheet" href="resources/style/.css">
+
+    <!-- Link Privilege js File -->
+
+    <script src="controllerjs\privilege.js"></script>
+
+</head>
+
+<body onload="refreshPrivilegeTable()">
+
+    <!-- Topnav Bar -->
+  <nav th:replace="~{component ::topnavFragment}">
+</nav>
+    
+
+    <div class="container-fluid mt-2">
+
+        <!-- Start Title area -->
+
+        <div class="row mt-5">
+
+            <div class="col-12 text-center d-flex justify-content-center p-2 title-header-div">
+
+                <i class="fa-solid fa-flag fa-2x me-3"></i>
+                <h2>Privilege Management</h2>
+
+            </div>
+
+        </div>
+
+        <!-- End Title area -->
+
+        <!-- Start of Form and Table -->
+
+        <div class="row mt-5 m-2 user-card">
+
+            <!-- Form Starts -->
+
+            <div class="col-4">
+
+                <form action="" id="PrivilegeForm" onsubmit="return false">
+
+                    <!-- Role -->
+
+                    <div class="row mt-2">
+                        <label for="" class="form-label fw-bold col-3">Role :</label>
+                        <div class="col-9">
+                            <select id="selectRole" class="form-select text-center" required
+                            onchange="selectDynamicValidator(selectRole,'', 'privilege','role_id')">
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Role -->
+
+                    <!-- Module -->
+
+                    <div class="row mt-4">
+                        <label for="" class="form-label fw-bold col-3">Module :</label>
+                        <div class="col-9">
+                            <select id="selectModule" class="form-select text-center" required>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Module -->
+
+                    <!-- Select -->
+                    <div class="row mt-4">
+                        <label for="" class="col-4 col-form-label fw-bold">Select :</label>
+                        <div class="mb-3 form-check col-8">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label">Select Privilege
+                                Not Granted</label>
+                        </div>
+                    </div>
+
+                    <!-- Select -->
+
+                    <!-- Insert -->
+
+                    <div class="row mt-4">
+                        <label for="" class="col-4 col-form-label fw-bold">Insert :</label>
+                        <div class="mb-3 form-check col-8">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label">Insert Privilege
+                                Not Granted</label>
+                        </div>
+                    </div>
+
+                    <!-- Insert -->
+
+                    <!-- Update -->
+
+                    <div class="row mt-4">
+                        <label for="" class="col-4 col-form-label fw-bold">Update :</label>
+                        <div class="mb-3 form-check col-8">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label">Update Privilege
+                                Not Granted</label>
+                        </div>
+                    </div>
+
+                    <!-- Update -->
+
+                    <!-- Delete -->
+
+                    <div class="row mt-4">
+                        <label for="" class="col-4 col-form-label fw-bold">Delete :</label>
+                        <div class="mb-3 form-check col-8">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="" id="">Delete Privilege Not Granted</label>
+                        </div>
+                    </div>
+
+                    <!-- Delete -->
+
+                    <!-- Buttons -->
+                    <div class="row mt-4">
+                        <div class="col-7">
+                            <button type="reset" class="btn btn-primary ">Clear</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary ">Update</button>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" onclick="" class="btn btn-primary ">Submit</button>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                </form>
+            </div>
+
+            <!-- Form Ends -->
+
+            <!-- Table Starts -->
+
+
+            <div class="col-8 ">
+
+                <div class="row m-2">
+
+                    <div class="col-12 ">
+
+                        <div class="card-body ">
+
+                            <table class="table table-hover" id="tablePrivilege">
+
+                                <thead class="table-header text-center">
+
+                                    <tr class=" text-center">
+
+                                        <th> # </th>
+                                        <th> Role </th>
+                                        <th> Module </th>
+                                        <th> Select </th>
+                                        <th> Insert </th>
+                                        <th> Update </th>
+                                        <th> Delete </th>
+                                        <th> Modify </th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody class="table-body ">
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Table Ends -->
+
+        </div>
+
+        <!-- Start of Form and Table -->
+
+    </div>
+
+    
+
+</body>
+
+</html>

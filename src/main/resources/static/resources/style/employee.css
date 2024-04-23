@@ -1,0 +1,85 @@
+.text-input {
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    transition: transform ease 0.10s, box-shadow ease 0.10s;
+}
+
+.text-input:hover {
+
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+}
+
+.all-button {
+    width: 25%;
+    border-radius: 20px;
+}
+
+.btn-clear {
+    background-color: rgba(241, 12, 12, 0.763);
+}
+
+.btn-update {
+    background-color: rgba(248, 190, 30, 0.699);
+}
+
+.btn-add {
+    background-color: rgba(58, 241, 12, 0.61);
+}
+
+.btn-clear:hover {
+    background-color: rgba(240, 243, 243, 0.986);
+    border: 2px solid rgb(12, 241, 241);
+    color: rgb(12, 241, 241);
+}
+
+.btn-update:hover {
+    background-color: rgba(240, 243, 243, 0.986);
+    border: 2px solid rgb(248, 190, 30);
+    color: rgb(248, 190, 30);
+}
+
+.btn-add:hover {
+    background-color: rgba(240, 243, 243, 0.986);
+    border: 2px solid rgb(58, 241, 12);
+    color: rgb(58, 241, 12);
+}
+
+.btn-edit {
+    border: 2px solid black;
+    background-color: rgba(241, 173, 46, 0.842);
+    color: black;
+}
+
+.btn-edit:hover {
+    border: 2px solid rgba(241, 173, 46, 0.842);
+    background-color: rgba(243, 243, 242, 0.842);
+}
+
+.status-working {
+    font-weight: bold;
+    color: rgb(97, 211, 142);
+    text-align: center;
+}
+
+.status-resigned {
+    font-weight: bold;
+    color: rgb(251, 170, 47);
+    text-align: center;
+}
+
+.status-deleted {
+    font-weight: bold;
+    color: rgb(175, 0, 0);
+    text-align: center;
+}
+
+.status-other {
+    font-weight: bold;
+    color: red;
+    text-align: center;
+}
+
+.designation {
+    text-align: center;
+}
