@@ -1,5 +1,7 @@
 package lk.bitproject.employee.cotroller;
 
+import lk.bitproject.privilege.cotroller.PrivilegeController;
+import lk.bitproject.privilege.entity.Privilege;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,7 @@ import lk.bitproject.employee.dao.EmployeeStatusDao;
 import lk.bitproject.employee.entity.Employee;
 import lk.bitproject.employee.entity.EmployeeStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController // implemented mapping available for use
@@ -34,6 +37,9 @@ public class EmployeeController {
 
    private EmployeeStatusDao daoStatus;
 
+   // Create privilege Controller Instance
+   private PrivilegeController privilegeController = new PrivilegeController();
+
    @RequestMapping(value = "/employee")
    public ModelAndView employeeUI() {
 
@@ -48,6 +54,14 @@ public class EmployeeController {
 
    @GetMapping(value = "/employee/alldata", produces = "application/json")
    public List<Employee> allEmployeeData() {
+      // return "Data";
+      // get logged User Authentication object using Security context holder
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      // get privilege object using getPrivilegeByUserModule function
+      Privilege userPrivilege = privilegeController.getPrivilegeByUserModule(authentication.getName(), "Employee");
+      if (!userPrivilege.getSelpriv()) {
+         return new ArrayList<Employee>();
+      }
       return dao.findAll(); // dao variable eka use krl find all function eken data krgnnwa
    }
 
@@ -56,10 +70,15 @@ public class EmployeeController {
    @PostMapping(value = "/employee")
    public String saveEmployee(@RequestBody Employee employee) {
 
-      // Autentication and Authorization
+      // Authentication and Authorization
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      // get privilege object using getPrivilegeByUserModule function
+      Privilege userPrivilege = privilegeController.getPrivilegeByUserModule(authentication.getName(), "Employee");
+      if (!userPrivilege.getInspriv()) {
+         return "Save not Completed! You don't have permission to...";
+      }
 
       // check duplicate NIC
-
       Employee extEmployeeByNic = dao.getByNic(employee.getNic());
       if (extEmployeeByNic != null) {
          // return "save not completed : Given NIC Already exist..!";
@@ -102,11 +121,15 @@ public class EmployeeController {
       }
    }
 
-   // delete mapping
+   // Delete mapping
    @DeleteMapping(value = "/employee")
    public String deleteEmployee(@RequestBody Employee employee) {
       // Authentication and authorization
-
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      Privilege userPrivilege = privilegeController.getPrivilegeByUserModule(authentication.getName(), "Employee");
+      if (!userPrivilege.getInspriv()) {
+         return "Delete not Completed! You don't have permission to...";
+      }
       // Excisting
       // get excisting employee object getrferencebyid function --> used employee pk
 
@@ -140,24 +163,37 @@ public class EmployeeController {
    }
 
    // put mapping
+   /**
+    * Update an employee entity.
+    *
+    * @param employee The Employee object containing updated information.
+    * @return A message indicating whether the update was successful or not.
+    */
    @PutMapping(value = "/employee")
    public String updateEmployee(@RequestBody Employee employee) {
 
       // Authentication and authorization
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      Privilege userPrivilege = privilegeController.getPrivilegeByUserModule(authentication.getName(), "Employee");
+      if (!userPrivilege.getInspriv()) {
+         return "Update not Completed! You don't have permission to...";
+      }
 
-      // Duplicate and excisting
-
+      // Duplicate and existing
+      // Check if the employee exists
       Employee extEmployee = dao.getReferenceById(employee.getId());
       if (extEmployee == null) {
          return "Update not Completed:Employee Not Available...!";
       }
 
+      // Check for duplicate NIC
       Employee extEmployeeByNic = dao.getByNic(employee.getNic());
       if (extEmployeeByNic != null && extEmployeeByNic.getId() != employee.getId()) {
          return "Update Not Completed : Changed " + employee.getNic() + "already Excists..!";
 
       }
 
+      // Check for duplicate email
       Employee extEmployeeByEmail = dao.getByEmail(employee.getEmail());
       if (extEmployeeByEmail != null && extEmployeeByEmail.getId() != employee.getId()) {
          return "Update Not Completed : Changed " + employee.getEmail() + "already Excists..!";
@@ -168,13 +204,13 @@ public class EmployeeController {
          // set auto set value
 
          // operator
-         dao.save(employee);
+         dao.save(employee); // Save the updated employee
 
          // dependencies
 
-         return "OK";
+         return "OK"; // Update successful
       } catch (Exception e) {
-         return "Update Not Completed :" + e.getMessage();
+         return "Update Not Completed :" + e.getMessage(); // Update unsuccessful
       }
    }
 

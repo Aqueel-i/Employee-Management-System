@@ -1,7 +1,9 @@
 package lk.bitproject.item.entity;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,11 +42,11 @@ public class Item {
 
     @Column(name = "purchaseprice")
     @NotNull
-    private String purchaseprice;
+    private BigDecimal purchaseprice;
 
     @Column(name = "salesprice")
     @NotNull
-    private DecimalFormat salesprice;
+    private BigDecimal salesprice;
 
     @Column(name = "note")
     private String note;
@@ -59,31 +61,26 @@ public class Item {
 
     @Column(name = "addeddatetime")
     @NotNull
-    private LocalDate addeddatetime;
+    private LocalDateTime addeddatetime;
 
     @ManyToOne
-
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private Brand Brand_id;
 
     @ManyToOne
-
     @JoinColumn(name = "packagetype_id", referencedColumnName = "id")
-    private Brand packagetype_id;
+    private PackageType packagetype_id;
 
     @ManyToOne
-
     @JoinColumn(name = "subcategory_id", referencedColumnName = "id")
-    private Brand subcategory_id;
+    private SubCategory subcategory_id;
 
     @ManyToOne
-
     @JoinColumn(name = "unittype_id", referencedColumnName = "id")
-    private Brand unittype_id;
+    private UnitType unittype_id;
 
     @ManyToOne
-
     @JoinColumn(name = "itemstatus_id", referencedColumnName = "id")
-    private Brand itemstatus_id;
+    private ItemStatus itemstatus_id;
 
 }

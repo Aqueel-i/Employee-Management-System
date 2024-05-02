@@ -17,6 +17,8 @@ import lk.bitproject.item.entity.Item;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -43,11 +45,11 @@ public class Supplier {
     private String suppliername;
 
     @Column(name = "addeduser_id")
-    private String addeduser_id;
+    private Integer addeduser_id;
 
     @Column(name = "addeddatetime")
     @NotNull
-    private LocalDate addeddatetime;
+    private LocalDateTime addeddatetime;
 
     @Column(name = "updateuser_id")
     private String updateuser_id;

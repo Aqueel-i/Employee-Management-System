@@ -6,67 +6,210 @@
 
 <head>
 
-    <!-- link User css file -->
-    <link rel="stylesheet" href="resources/style/supplier.css">
+    <!-- link employee css file -->
+    <link rel="stylesheet" href="resources/style/employee.css">
 
-
-    <!-- Link User js File -->
-
-    <script src="controllerjs\supplier.js"></script>
+    <!-- link employee js file -->
+    <script src="controllerjs/supplier.js"></script>
 
 </head>
 
 <body>
 
-    <!-- Topnav Bar -->
-  <nav th:replace="~{component ::topnavFragment}">
+<!-- Topnav Bar -->
+<nav th:replace="~{component ::topnavFragment}">
 </nav>
-    
-<div class="container mt-5">
-  <div class="row">
-      <div class="col-2"></div>
-      <div class="col-3"><label for="supplier">Supplier Name:</label></div>
-      <div class="col-5"><input type="text" id="supplier" class="form-control" /></div>
-      <div class="col-2"></div>
-  </div>
 
-  <div class="row mt-5">
-      <div class="col-2"></div>
-      <div class="col-3">
-          <select class="form-select" multiple>
-              <option value="">item1</option>
-              <option value="">item1</option>
-              <option value="">item1</option>
-              <option value="">item1</option>
-          </select>
-      </div>
-      <div class="col-2">
-          <div class="item">
-              <button class="move-btn"> > </button>
-              <button class="move-btn"> >> </button>
-              <button class="move-btn"> < </button>
-              <button class="move-btn"> << </button>
-          </div>
-      </div>
-      <div class="col-3">
-          <select class="form-select" multiple>
-              <option value="">item1</option>
-              <option value="">item1</option>
-              <option value="">item1</option>
-              <option value="">item1</option>
-          </select>
-      </div>
-      <div class="col-2"></div>
-  </div>
+<div class="container-fluid mt-2">
 
-  <div class="row mt-5">
-      <div class="col-3"></div>
-      <div class="col-2"><label for="">Supplier Status:</label></div>
-      <div class="col-5"><select class="form-select" id="selectSupplierStatus"></select></div>
-      <div class="col-3"></div>
+    <!-- title area start -->
+    <div class="row m-2">
+        <div class="col-12 text-center
+            title-header-div">
+            <h2> Supplier Management </h2>
+        </div>
+    </div>
+    <!-- title area End -->
 
-  </div>
+    <!-- Card area start  -->
+    <div class="row mt-2">
+        <div class="col-12">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-addnew-tab" data-bs-toggle="pill"
+                            data-bs-target="#tabAddNew" type="button" role="tab" aria-controls="tabAddNew"
+                            aria-selected="true">Add new Supplier </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-View-tab" data-bs-toggle="pill" data-bs-target="#tabViewAll"
+                            type="button" role="tab" aria-controls="tabViewAll" aria-selected="false">View Supplier</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <!-- form Area -->
+                <div class="tab-pane fade show active" id="tabAddNew" role="tabpanel" aria-labelledby="pills-addnew-tab"
+                     tabindex="0">
+
+                    <div class="card employee-card">
+                        <div class="card-body employee-cardbody">
+                            <form id="formEmployee" onsubmit="return false">
+                                <!-- required mark start-->
+                                <div class="row">
+                                    <div class="col-12 text-end fw-bold">
+                                        <span class="text-danger"> * </span> Required
+                                    </div>
+                                </div>
+                                <!-- required mark end-->
+
+                                <div class="row mt-2">
+                                    <label for="textFullName" class="col-3 col-form-label fw-bold">
+                                        Full Name : <span class="text-danger"> * </span>
+                                    </label>
+                                    <div class="col-9">
+                                        <input type="text" name="fullname" id="textFullName" class="form-control" required
+                                               data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                placeholder="Enter Full name"
+                                               onkeyup="textFullNameValidator(this);">
+                                    </div>
+                                </div>
+                                <!-- full name end-->
+
+
+                                <!-- Status Start-->
+                                <div class="row mt-2">
+                                    <div class="col-5">
+                                        <label for="selectAllItem" class="form-label fw-bold"> All Item </label>
+                                        <select class="form-select" multiple id="selectAllItem">
+                                            <option value="">ABC</option>
+                                            <option value="">DEF</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-1 text-center">
+                                        <button type="button" onclick="btnAddOneItem()" style="background-color: black;color: aliceblue; width: 60PX;" class="btn mt-2"> > </button> <br>
+                                        <button type="button" onclick="btnAddAllItem()" style="background-color: black;color: aliceblue; width: 60PX;" class="btn mt-2"> >> </button> <br>
+                                        <button type="button" onclick="btnRemoveOneItem()" style="background-color: black;color: aliceblue; width: 60PX;" class="btn mt-2"> < </button> <br>
+                                        <button type="button" onclick="btnRemoveAllItem()" style="background-color: black;color: aliceblue; width: 60PX;" class="btn mt-2"> << </button>
+                                    </div>
+                                    <div class="col-5">
+                                        <label for="selectSelectedItem" class="form-label fw-bold"> Selected Item </label>
+                                        <select class="form-select" multiple id="selectSelectedItem">
+                                           
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Status end-->
+
+                                <!-- Status Start-->
+                                <div class="row mt-2">
+                                    <label for="selectSupplierStatus" class="col-3 col-form-label fw-bold">
+                                        Supplier Status : <span class="text-danger"> * </span>
+                                    </label>
+                                    <div class="col-9">
+                                        <select class="form-select" id="selectSupplierStatus"
+                                                onchange="selectDynamicValidator(this,'' ,'supplier' , 'supplierstatus_id')"></select>
+                                    </div>
+                                </div>
+                                <!-- Status end-->
+
+
+                                <!-- buttons start-->
+                                <div class="row mt-2">
+                                    <div class="col-4 text-start">
+                                        <div id="divModifyButton">
+
+                                            <button type="button" style="width: 25%;" id="buttonDelete"
+                                                    onclick="deleteEmployee(window['editOb'], window['editRow'])"
+                                                    class="btn btn-danger fw-bold ms-2 me-2"> Delete </button>
+                                            <button type="button" style="width: 25%;" class="btn btn-info fw-bold">
+                                                Print </button>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-8 text-end">
+                                        <button type="button" onclick=" let userConform = confirm('Are you sure to reset Employee form..?');
+                                     if (userConform) {
+                                        formEmployee.reset();
+                                        refreshEmployeeForm();
+                                        divModifyButton.className = 'd-none';
+                                     }" class="btn fw-bold
+                                    btn-clear all-button">
+                                            <i class="fa-solid fa-recycle"></i>
+                                            Clear
+                                        </button>
+                                        <button type="submit" id="buttonUpdate" style="pointer-events: all;" class="btn fw-bold
+                                me-2 ms-2 btn-update all-button" onclick="buttonEmployeeUpdate()">
+                                            <i class="fa-solid fa-edit"></i>
+                                            Update
+                                        </button>
+                                        <button style="pointer-events: all;" type="submit" id="buttonSubmit" class="btn fw-bold
+                                btn-add all-button" onclick="buttonEmployeeSubmit()">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- buttons end-->
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Table Area -->
+                <div class="tab-pane fade" id="tabViewAll" role="tabpanel" aria-labelledby="pills-View-tab"
+                     tabindex="0">
+
+                    <div class="card employee-card">
+                        <div class="card-body employee-cardbody">
+
+                            <table class="table table-hover" id="tableEmployee">
+                                <thead class="table-header text-center">
+                                <tr>
+                                    <th> # </th><!-- No ,# , Index -->
+                                    <th> Full Name </th>
+                                    <th> NIC </th>
+                                    <th> Mobile </th>
+                                    <th> Account </th>
+                                    <th> Email </th>
+                                    <th> Designation </th>
+                                    <th> Status </th>
+
+                                </tr>
+                                </thead>
+
+                                <tbody class="table-body">
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Card area end  -->
+
+    <!-- employee Add Modal -->
+    <div class="modal" id="employeeAddModal" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2> Edit Employee </h2>
+                    <button type="button" class="btn-close" onclick="buttonModalClose()"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 </body>
 
 </html>

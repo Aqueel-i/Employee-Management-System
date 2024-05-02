@@ -11,6 +11,8 @@ public class BitprojectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BitprojectApplication.class, args);
 
+		System.out.println("                                             ");
+		System.out.println("                                             ");
 		System.out.println("=============================================");
 		System.out.println("======== Project Started Successfully =======");
 		System.out.println("=============================================");

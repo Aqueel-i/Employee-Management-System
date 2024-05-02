@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 
-public class privilegecontroller {
+public class PrivilegeController {
 
     @Autowired // Dependency Injection....inject employee dao instance into dao variable
 
@@ -90,13 +90,16 @@ public class privilegecontroller {
 
         // get logged user authentication object using security context holder
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return getPrivilegeByUserModule(authentication.getName(), modulename);
+    }
 
-        if (authentication.getName().equals("Admin")) {
-            Privilege adminPrivi = new Privilege(true, true, false, false);
+    public Privilege getPrivilegeByUserModule(String username, String modulename) {
 
-            return adminPrivi;
+        if (username.equals("Admin")) {
+            return new Privilege(true, true, false, false);
+
         } else {
-            String privi = dao.getPrivilegeByUserModule(authentication.getName(), modulename); // 1,1,1,1 --> [1,1,1,1]
+            String privi = dao.getPrivilegeByUserModule(username, modulename); // 1,1,1,1 --> [1,1,1,1]
             String[] priviArray = privi.split(",");
 
             Boolean select = priviArray[0].equals("1");
@@ -104,10 +107,8 @@ public class privilegecontroller {
             Boolean update = priviArray[2].equals("1");
             Boolean delete = priviArray[3].equals("1");
 
-            Privilege userPrivi = new Privilege(select, insert, update, delete);
-            return userPrivi;
+            return new Privilege(select, insert, update, delete);
         }
-
     }
 
 }
